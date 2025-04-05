@@ -22,6 +22,18 @@ metodei sleep() din clasa Thread. Aceasta va suspenda firul de execuție curent 
 Thread.sleep(x); // x is the delay in milliseconds
 ```
 
+Pentru a calcula o unitate de timp se va folosi (să zicem 10ms) se va folosi următoarea secvență de cod:
+```java
+long startTime = System.currentTimeMillis();
+for (long i = 0; i < 20_000_000; i++) {
+    i++;
+    i+-;
+}
+long endTime = System.currentTimeMillis();
+```
+Bucla *for* de mai sus va dura aproximativ 10ms (pe propriul PC). Determinați prin incercări succesive numărul de iterații 
+necesare pentru a obține o unitate de timp de 10ms pentru propriile sisteme.
+
 ## Exercițiul 1
 Se dă rețeaua Petri din figura de mai jos. Se va folosi excluderea mutuală pentru elementele de sincronizare reprezentate de locațiile P9 și P10.
 
@@ -61,3 +73,22 @@ Se va folosi o coadă pentru a stoca datele produse și un mecanism de sincroniz
 (așteaptă) atunci când coada este plină și consumatorul nu consumă date (așteaptă) atunci când coada este goală.
 
 ##### Vezi începutul de implementare din pachetul edu.tucn.str.ex6
+
+## Exercițiul 7 - Logger de fișiere sincronizat
+Într-o aplicație multi-thread, mai multe thread-uri trebuie să înregistreze mesaje în același fișier. 
+Fără o sincronizare adecvată, mesajele din jurnal ar putea fi amestecate sau corupte. Implementați un logger thread-safe 
+care să asigure că fiecare intrare de jurnal este scrisă în fișier în mod atomic.
+
+### Cerințe:
+#### Clasa Logger:
+- Creeați o clasă Logger care scrie mesajele de jurnal într-un fișier (de exemplu, app.log).
+- Includeți o metodă writeLog(String message) care adaugă o intrare de jurnal cu o marcă temporală.
+- Utilizați cuvântul cheie synchronized în metoda writeLog (sau un bloc sincronizat) pentru a te asigura că, la un moment dat, doar un singur thread poate scrie.
+
+#### Multi-threading:
+- Scrie un program de testare în care mai multe thread-uri execută sarcini și utilizează logger-ul pentru a scrie mesajele lor.
+- Fiecare thread ar trebui să scrie mai multe mesaje de jurnal.
+
+#### Rezultat așteptat:
+- Fișierul app.log ar trebui să conțină mesaje de jurnal formatate corect, fără interferențe între ele.
+- Fiecare intrare de jurnal trebuie să includă o timpul la care a avut loc înregistrarea și identificatorul thread-ului.

@@ -20,9 +20,7 @@ public class Buffer {
      */
     public synchronized void addTask(Task task) throws InterruptedException {
         // todo: wait if queue is full
-        if (queue.size() == capacity) { wait();}
         queue.add(task);
-        notify();
         // todo: notify the consumer that there is a new task
     }
 
@@ -31,9 +29,7 @@ public class Buffer {
      */
     public synchronized void executeTask() throws InterruptedException {
         // todo: wait if queue is empty
-        if (queue.isEmpty()) { wait();}
         queue.poll().execute();
-        notify();
         // todo: notify the producer that there is space in the queue
     }
 }
