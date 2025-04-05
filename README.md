@@ -30,6 +30,7 @@ for (long i = 0; i < 20_000_000; i++) {
     i+-;
 }
 long endTime = System.currentTimeMillis();
+System.out.println("Elapsed time in milliseconds: " + (endTime - startTime));
 ```
 Bucla *for* de mai sus va dura aproximativ 10ms (pe propriul PC). Determinați prin incercări succesive numărul de iterații 
 necesare pentru a obține o unitate de timp de 10ms pentru propriile sisteme.
